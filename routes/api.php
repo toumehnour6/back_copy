@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\WalletController;
 
 
 Route::get('/user', function (Request $request) {
@@ -35,7 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
                 'user'=> $request->user()
             ]);
         });
-    });
+    Route:: get('/wallet/my', [WalletController::class, 'myWallet']);
+    Route::post('/wallet/deposit', [WalletController::class, 'deposit']);
+    Route::  post('/wallet/withdraw', [WalletController::class, 'withdraw']);
+    Route::post('/wallet/transfer-to-admin', [WalletController::class, 'transferToAdmin']);
+     });
 });
 
 //Reset Password Routes

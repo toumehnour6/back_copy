@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Wallet;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -40,4 +41,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts(){
         return $this->hasMany(Post::class);
     }
+    public function wallet()
+    {
+        return $this-> hasOne(Wallet::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role==='admin';
+    }
+
 }
